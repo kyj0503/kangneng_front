@@ -1,0 +1,40 @@
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+
+.menuIcon img,
+.logo img,
+.userIcon img {
+    width: 24px;
+    height: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.logo span {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.userIcon img {
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+}
