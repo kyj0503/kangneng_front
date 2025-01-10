@@ -1,7 +1,4 @@
-import React from 'react';
-import AskQuestion from './pages/AskQuestion';
 import Calendar from './pages/Calendar';
-
 import React, { Fragment } from 'react';
 import FetchMessage from './pages/FetchMessage';
 import SendMessage from './pages/SendMessage';
