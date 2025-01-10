@@ -1,383 +1,68 @@
-/* 기본 스타일 */
-.body {
-  display: flex;
-  flex-direction: row;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f8f8;
-}
-
-/* 헤더 스타일 */
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.menu-icon img,
-.logo img,
-.user-icon img {
-  width: 24px;
-  height: 24px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: auto;
-}
-
-.logo-text {
-  margin-left: 10px;
-  font-size: 18px;
-  color: #333;
-}
-
-.user-icon img {
-  border-radius: 50%;
-  background-color: #ddd;
-}
-
-/* 사이드바 스타일 */
-.sidebar {
-  position: fixed;
-  width: 220px;
-  background-color: #fdfef3;
-  top: 60px;
-  left: 0;
-  bottom: 20px;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 15;
-  transition: transform 0.3s ease-in-out;
-}
-
-.sidebar.hidden {
-  transform: translateX(-100%); /* 사이드바 숨김 */
-}
-
-/* 배경 어둡게 */
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 14;
-  display: none;
-}
-
-.backdrop.active {
-  display: block;
-}
-
-/* 작은 화면에서 사이드바 */
-@media (max-width: 768px) {
-  .sidebar {
-      width: 80%;
-      max-width: 300px;
-  }
-
-  .sidebar.hidden {
-      transform: translateX(-100%);
-  }
-
-  .chat-container {
-      width: calc(100% - 40px);
-  }
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
-  font-size: 16px;
-}
-
-.sidebar ul li img {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-  object-fit: contain;
-  display: inline-block;
-  flex-shrink: 0;
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: #333;
-}
-
-.sidebar ul li.highlight,
-.sidebar-highlight {
-  background-color: #fdfde3;
-  border-radius: 15px;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* 콘텐츠 영역 스타일 */
-.content {
-  margin-left: 220px;
-  flex: 1; /* 남은 공간 채우기 */
-  margin-top: 60px;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.content .main {
-  margin-left: 220px; /* 사이드바 너비와 일치 */
-  text-align: center;
-  margin-top: 60px; /* 헤더 아래로 간격 */
-  padding: 20px;
-}
-
-/* h1 스타일: 채팅창 위에 배치 */
-.content .main h1 {
-  position: absolute; /* 채팅창과 분리된 위치 지정 */
-  top: 13%; /* 화면 상단에서 13% 아래로 배치 */
-  left: 50%; /* 화면 중앙 정렬 */
-  transform: translate(-50%, -50%); /* 가로, 세로 정렬 */
-  font-size: 21px; /* 글자 크기 */
-  color: #333;
-  margin: 0;
-  background-color: transparent;
-  z-index: 1000; /* 채팅창 위로 배치 */
-}
-
-.content .main .search-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 500px;
-  width: 90%;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.content .main .search-container textarea {
-  width: 100%;
-  min-height: 40px;
-  max-height: 150px;
-  padding: 12px 50px 12px 40px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease-in-out;
-  resize: none;
-  overflow-y: auto;
-}
-
-.content .main .search-container textarea:focus {
-  border-color: #4285f4;
-  box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
-}
-
-.content .main .search-container img {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.content .main .search-container .search-icon {
-  left: 15px;
-}
-
-.content .main .search-container .send-icon {
-  right: 15px;
-}
-
-/* 채팅 창 스타일 */
-.chat-container {
-  position: fixed; /* 화면 고정 */
-  top: 50%; /* 세로 중앙 */
-  transform: translate(-50%, -50%); /* 완전한 중앙 정렬 */
-  width: calc(100% - 260px); /* 기본적으로 사이드바 제외한 너비 */
-  max-width: 800px; /* 최대 너비 */
-  height: calc(100vh - 200px); /* 헤더와 입력창 제외한 높이 */
-  overflow-y: auto; /* 스크롤 활성화 */
-  background-color: #333;
-  padding: 20px;
-  box-sizing: border-box;
-  border-color: #000;
-  z-index: 10; /* 다른 요소 위에 표시 */
-}
-
-/* 사이드바가 숨겨졌을 때 채팅 컨테이너 */
-.chat-container.fullscreen {
-  width: 60%; /* 화면 중앙에 위치할 너비 */
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.chat-message {
-  display: flex;
-  align-items: flex-start;
-  margin: 10px 0;
-  position: relative; /* 말풍선 화살표를 위한 기준 */
-}
-
-.chat-message.user {
-  justify-content: flex-end;
-}
-
-.chat-message.bot {
-  justify-content: flex-start;
-}
-
-.chat-message.bot .icon-container {
-  position: absolute;
-  top: 50%; /* 말풍선의 세로 중심에 맞춤 */
-  left: 100%; /* 말풍선 바로 바깥쪽 */
-  margin-left: 5px; /* 말풍선과 아이콘 간의 간격 */
-  transform: translateY(-50%); /* 세로 중심 정렬 */
-}
-
-.chat-message.bot .icon-container img {
-  width: 16px; /* 아이콘 크기 */
-  height: 16px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.chat-message.bot .icon-container img:hover {
-  transform: scale(1.2); /* 마우스 오버 시 확대 */
-}
-
-.message-bubble {
-  max-width: 70%; /* 말풍선 너비 */
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-size: 14px;
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  word-wrap: break-word;
-  position: relative; /* 화살표 추가를 위한 기준 */
-  background-color: #f0f0f0; /* 연한 회색 말풍선 */
-  color: #000; /* 짙은 검은색 글씨 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 말풍선 그림자 추가 */
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 사용자 메시지 말풍선 */
-.message-bubble.user {
-  background-color: #4285f4; /* 파란색 말풍선 */
-  color: #fff; /* 흰색 글씨 */
-  border-top-right-radius: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
 }
 
-/* 봇 메시지 말풍선 */
-.message-bubble.bot {
-  background-color: #f0f0f0; /* 연한 회색 말풍선 */
-  color: #000; /* 짙은 검은색 글씨 */
-  border-top-left-radius: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-/* 입력창 및 버튼 스타일 */
-.search-container {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 600px;
-  width: 90%;
-  background-color: #fff; /* 입력창 배경색을 하얗게 변경 */
-  padding: 10px;
-  border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-.search-container textarea {
-  flex: 1;
-  height: auto;
-  max-height: 150px;
-  overflow-y: auto;
-  resize: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  outline: none;
-  background-color: #fff; /* 입력 영역 배경색 하얗게 변경 */
-  color: #333; /* 텍스트 색상 */
-  transition: all 0.3s ease-in-out;
-}
-
-.search-container textarea:focus {
-  border-color: #4285f4;
-  box-shadow: 0 0 8px rgba(66, 133, 244, 0.3);
-}
-
-.search-container img {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
-.search-container img:hover {
-  transform: scale(1.2);
-}
-
-.search-container .send-icon {
-  position: absolute;
-  right: 15px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.chat-container,
-.search-container {
-  align-self: center;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-      display: none;
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
   }
-  .content {
-      margin-left: 0;
+  a:hover {
+    color: #747bff;
   }
-  .chat-container {
-      width: calc(100% - 40px);
-  }
-  .header {
-      padding: 10px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-      background-color: #f8f8f8; /* 다크 모드에서도 밝은 색 유지 */
+  button {
+    background-color: #f9f9f9;
   }
 }
