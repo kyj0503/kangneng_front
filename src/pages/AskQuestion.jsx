@@ -14,6 +14,10 @@ function AskQuestion() {
             });
 
             if (!res.ok) {
+                if (res.status === 401) {
+                    setError('인증이 만료되었습니다. 다시 로그인해주세요.');
+                    return;
+                }
                 throw new Error(`HTTP error! status: ${res.status}`);
             }
 
