@@ -7,7 +7,7 @@ function AskQuestion() {
 
     const convertToJSON = async () => {
         try {
-            const res = await fetch('http://43.201.217.228:8080/api/openai/convert', {
+            const res = await fetch('http://localhost:8080/api/openai/convert', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt: naturalLanguage }), // JSON 형식으로 데이터 전송

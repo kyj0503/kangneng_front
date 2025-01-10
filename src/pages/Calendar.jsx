@@ -9,7 +9,7 @@ function Calendar() {
         setLoading(true); // 로딩 상태로 설정
         setError(null); // 이전 에러 초기화
         try {
-            const response = await fetch("http://43.201.217.228:8080/api/calendar/events"); // 백엔드 API 호출
+            const response = await fetch("http://localhost:8080/api/calendar/events"); // 백엔드 API 호출
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
